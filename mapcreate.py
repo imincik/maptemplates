@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-"""UMN Mapserver mapfiles parser with trivial variables support.
+"""Very simple Mapserver mapfile templating script.
 
-Usage: mapvars.py mapfile.map '<key>=<value>;<key>=<value>; ...'
+Usage: mapcreate.py mapfile-template.map.in '<key>=<value>;<key>=<value>; ...'
 
-Example: ./mapvars.py test.map.in "USER=MyUser; PASSWORD=MyPassword; SRID=4326; OUTLINECOLOR=100 100 100"
+Example: ./mapcreate.py test.map.in "USER=MyUser; PASSWORD=MyPassword; SRID=4326; OUTLINECOLOR=100 100 100"
 """
 
 import sys
