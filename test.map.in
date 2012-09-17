@@ -1,0 +1,41 @@
+# local variables declaration
+STARTVAR
+	USER = DefaultUser
+	PASSWORD = DefaultPassword
+	DBNAME = DefaultDBName
+	HOST = DefaultHost
+ENDVAR
+
+
+# we can declare variables in multiple blocks
+# every next block overrides values of previous blocks
+STARTVAR
+	LAYERTYPE = POINT
+	SRID = -1
+	IMGFORMAT = png
+	OUTLINECOLOR = 0 0 0
+ENDVAR
+
+
+# Layer1 configuration
+LAYER CONNECTIONTYPE POSTGIS
+	NAME 'Layer1'
+	TYPE %(LAYERTYPE)s
+	CONNECTION 'user=%(USER)s password=%(PASSWORD)s dbname=%(DBNAME)s host=%(HOST)s'
+	DATA 'SELECT * FROM "DbTable1" USING UNIQUE gid USING SRID=%(SRID)s'
+	METADATA
+		'wms_title'		'Layer1'
+		'wms_format'		'image/%(IMGFORMAT)s'
+	END
+
+	PROJECTION
+		'init=epsg:%(SRID)s'
+	END
+
+	CLASS
+		STYLE
+			WIDTH 1
+			OUTLINECOLOR %(OUTLINECOLOR)s
+		END
+	END
+END
